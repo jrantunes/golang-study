@@ -35,5 +35,5 @@ func main() {
 }
 
 // func x() {
-// 	// println(escopada) // não acessivel
+// println(escopada) // não acessivel
 // }
