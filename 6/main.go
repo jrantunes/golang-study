@@ -32,4 +32,10 @@ func main() {
 
 	// len = 10; cap = 18; valor = [1 2 3 4 5 6 7 8 9 10]
 	fmt.Printf("len = %d; cap = %d; valor = %v \n", len(slice), cap(slice), slice)
+
+	// criando uma slice com make
+	makeslice := make([]int, 1)
+	makeslice[0] = 1
+
+	fmt.Printf("%v\n", makeslice) // [1]
 }
