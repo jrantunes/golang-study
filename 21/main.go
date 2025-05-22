@@ -13,5 +13,9 @@ import (
 
 func main() {
 	soma := matematica.Soma(10, 20)
+	carro := matematica.Carro{Marca: "Fiat"}
 	fmt.Println("Resultado: ", soma) // Resultado:  30
+	fmt.Println(matematica.A)        // 50
+	fmt.Println(carro.Marca)         // Fiat
+	carro.Andar()
 }
