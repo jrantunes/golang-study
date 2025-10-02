@@ -1,0 +1,21 @@
+go build main.go - compila o código golang e gera o binário para executar no SO da maquina atual
+
+GOOS=windows go build main.go - gera uma build para windows
+GOOS=linux go build main.go - gera uma build para linux
+GOOS=darwin go build main.go - gera uma build para mac
+
+GOOS = Sistema operacional
+GOARCH = Arquitetura do sistema
+
+go tool dist list - Exibe a lista de Sistema operacional/Arquitetura disponíveis para buildar a aplicação
+
+GOOS=windows GOARCH=amd64 go build main.go - gera uma build para windows com arquitetura amd64
+GOOS=windows GOARCH=arm64 go build main.go - gera uma build para windows com arquitetura arm64
+
+https://www.digitalocean.com/community/tutorials/building-go-applications-for-different-operating-systems-and-architectures
+
+go env GOOS GOARCH - Exibe os valores padrão para GOOS e GOARCH
+
+Quando temos um modulo iniciado não precisamos passar o arquivo main no go build 
+  O nome do arquivo gerado vai ser por padrão o nome do modulo
+  Para gerar com outro nome basta rodar go build -o nome-desejado
