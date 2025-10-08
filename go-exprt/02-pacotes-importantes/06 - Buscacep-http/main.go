@@ -44,9 +44,24 @@ func BuscaCEPHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
+	cep, err := BuscaCEP(cepParam)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
 	w.Header().Set("Content-Type", "application/json") // altera o valor de um header
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("Hello world!"))
+
+	// Marshal serve para quando quisermos armazenar o resultado em uma variável
+	// result, err := json.Marshal(cep)
+	// if err != nil {
+	// 	w.WriteHeader(http.StatusInternalServerError)
+	// 	return
+	// }
+	// w.Write(result)
+
+	// envia o cep encodado para o writer
+	json.NewEncoder(w).Encode(cep)
 }
 
 // retorna o ponteiro para a variavel original e não uma cópia
