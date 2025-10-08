@@ -1,6 +1,26 @@
 package main
 
-import "net/http"
+import (
+	"encoding/json"
+	"io"
+	"net/http"
+)
+
+type ViaCEP struct {
+	Cep         string `json:"cep"`
+	Logradouro  string `json:"logradouro"`
+	Complemento string `json:"complemento"`
+	Unidade     string `json:"unidade"`
+	Bairro      string `json:"bairro"`
+	Localidade  string `json:"localidade"`
+	Uf          string `json:"uf"`
+	Estado      string `json:"estado"`
+	Regiao      string `json:"regiao"`
+	Ibge        string `json:"ibge"`
+	Gia         string `json:"gia"`
+	Ddd         string `json:"ddd"`
+	Siafi       string `json:"siafi"`
+}
 
 func main() {
 	// http - multiplexer - (um recurso com outros recursos(funções) encaixados nele)
@@ -27,4 +47,23 @@ func BuscaCEPHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json") // altera o valor de um header
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("Hello world!"))
+}
+
+// retorna o ponteiro para a variavel original e não uma cópia
+func BuscaCEP(cep string) (*ViaCEP, error) {
+	resp, err := http.Get("http://viacep.com.br/ws/" + cep + "/json/")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+	var data ViaCEP
+	err = json.Unmarshal(body, &data)
+	if err != nil {
+		return nil, err
+	}
+	return &data, nil
 }
