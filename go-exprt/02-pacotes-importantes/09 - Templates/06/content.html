@@ -1,0 +1,31 @@
+{{ template "header.html" }}
+<h1>Cursos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Carga Horária</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{/* . - raiz do dado */}}
+    {{ range . }}
+      {{/* exibe apenas os que a CargaHoraria for igual a 40 */}}
+      {{/*
+        {{ if eq .CargaHoraria 40 }}
+          <tr>
+            <td>{{ .Nome }}</td>
+            <td>{{ .CargaHoraria }}</td>
+          </tr> 
+        {{ end }}
+      */}}
+      <tr>
+        {{/* passando .Nome como parametro da função mapeada ToUpper */}}
+        <td>{{ .Nome | ToUpper }}</td>
+        <td>{{ .CargaHoraria }}</td>
+      </tr> 
+    {{ end }}
+  </tbody>
+</table>
+{{ template "footer.html" }}
