@@ -23,7 +23,7 @@ type ViaCEP struct {
 }
 
 func main() {
-	// http.ListenAndServe - sobe um multiplexer - (um componente que attachamos rotas nele)
+	// http.ListenAndServe - sobe um multiplexer(mux) - (um componente que attachamos rotas nele)
 
 	// o handler pode ser escrito assim (não recomendado)
 	// http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
